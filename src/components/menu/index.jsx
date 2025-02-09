@@ -1,7 +1,7 @@
 import styles from "../../styles/menu.module.css";
 import Logo from "../../assets/images/logo.png";
 import CustomNavigate from "../customNavigate";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useNotification } from "../toastNotifier";
 

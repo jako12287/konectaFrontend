@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { loginUser } from "../services/api";
-import { useAuth } from "../context/authContext";
+import { useAuth } from "../context/AuthContext";
 import { useNotification } from "../components/toastNotifier";
 import { useNavigate } from "react-router-dom";
 

@@ -2,6 +2,8 @@ import { useState } from "react";
 import EmployeeTable from "../../components/customTable";
 import { useEmployees } from "../../context/EmployeeContext";
 import styles from "../../styles/listEmployee.module.css";
+import Modal from "../../components/modal";
+import CreateUseForm from "../../components/createUserForm";
 const ListEmployee = () => {
   const { employees } = useEmployees();
   const [openModal, setOpenModal] = useState(false);
@@ -17,6 +19,11 @@ const ListEmployee = () => {
           data={employees}
           onOpenModal={() => setOpenModal(!openModal)}
         />
+      )}
+      {openModal && (
+        <Modal isOpen={openModal} onClose={() => setOpenModal(!openModal)}>
+          <CreateUseForm setOpenModal={setOpenModal}/>
+        </Modal>
       )}
     </div>
   );

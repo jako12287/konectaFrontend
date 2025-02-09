@@ -11,26 +11,37 @@ export const EmployeeProvider = ({ children }) => {
   const [employees, setEmployees] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
   const { token } = useAuth();
 
-  useEffect(() => {
-    const getEmployees = async () => {
-      if (token) {
-        const { employees, totalPages } = await fetchEmployees(
-          token,
-          currentPage
-        );
+  const getEmployees = async () => {
+    if (token) {
+      setLoading(true);
+      try {
+        const { employees, totalPages } = await fetchEmployees(token, currentPage);
         setEmployees(employees);
         setTotalPages(totalPages);
+      } catch (error) {
+        console.error("Error al obtener empleados:", error);
+      } finally {
+        setLoading(false);
       }
-    };
+    }
+  };
 
+  // Llamada inicial
+  useEffect(() => {
     getEmployees();
   }, [token, currentPage]);
 
+  // Función para refrescar empleados manualmente
+  const refreshEmployees = () => {
+    getEmployees();
+  };
+
   return (
     <EmployeeContext.Provider
-      value={{ employees, currentPage, setCurrentPage, totalPages }}
+      value={{ employees, currentPage, setCurrentPage, totalPages, refreshEmployees, loading }}
     >
       {children}
     </EmployeeContext.Provider>

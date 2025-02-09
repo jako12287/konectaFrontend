@@ -4,6 +4,7 @@ import router from "./routes";
 import { AuthProvider } from "./context/AuthContext";
 import { EmployeeProvider } from "./context/EmployeeContext";
 import NotificationContainer from "./components/toastNotifier";
+import { RegisterProvider } from "./context/RegisterContext";
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
       <NotificationContainer />
       <AuthProvider>
         <EmployeeProvider>
-          <RouterProvider router={router} />
+          <RegisterProvider>
+            <RouterProvider router={router} />
+          </RegisterProvider>
         </EmployeeProvider>
       </AuthProvider>
     </Suspense>

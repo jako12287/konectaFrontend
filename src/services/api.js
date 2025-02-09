@@ -47,3 +47,20 @@ export const fetchEmployees = async (token, page = 1, pageSize = 5) => {
     return { employees: [], totalPages: 1 };
   }
 };
+
+export const registerUser = async (userData, token) => {
+  const response = await fetch(`${API_URL}/api/auth/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(userData),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error al registrar usuario");
+  }
+
+  return response.json();
+};

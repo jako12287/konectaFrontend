@@ -11,7 +11,7 @@ const Wellcome = lazy(() => import("../views/admin/wellcome"));
 const ListEmployees = lazy(() => import("../views/admin/listEmployee"));
 const DetailEmployee = lazy(() => import("../views/admin/detailsEmployee"));
 const ListRequest = lazy(() => import("../views/admin/listRequest"));
-const NotFound = lazy(() => import("../views/NoFound"));
+const NotFound = lazy(() => import("../views/noFound"));
 
 const Router = [
   {

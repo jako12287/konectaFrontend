@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { lazy } from "react";
 import Layout from "../components/layout";
+import PrivateRoute from "./privateRoute"; 
 
 const Login = lazy(() => import("../views/login"));
 const DashboardEmployee = lazy(() =>
@@ -16,7 +17,7 @@ const Router = [
   {
     id: "login",
     path: "/",
-    element: <Login/>,
+    element: <Login />,
   },
   {
     id: "dashboardEmployee",
@@ -27,36 +28,28 @@ const Router = [
     id: "wellcome",
     path: "/wellcome",
     element: (
-      <Layout>
-        <Wellcome />
-       </Layout>
+      <PrivateRoute allowedRoles={["admin"]} element={<Layout><Wellcome /></Layout>} />
     ),
   },
   {
     id: "list-employees",
     path: "/list-employees",
     element: (
-      <Layout>
-        <ListEmployees />
-      </Layout>
+      <PrivateRoute allowedRoles={["admin"]} element={<Layout><ListEmployees /></Layout>} />
     ),
   },
   {
     id: "detail-employee",
     path: "/detail-employee/:id",
     element: (
-      <Layout>
-        <DetailEmployee />
-      </Layout>
+      <PrivateRoute allowedRoles={["admin"]} element={<Layout><DetailEmployee /></Layout>} />
     ),
   },
   {
     id: "list-request",
     path: "/list-request",
     element: (
-      <Layout>
-        <ListRequest />
-      </Layout>
+      <PrivateRoute allowedRoles={["admin"]} element={<Layout><ListRequest /></Layout>} />
     ),
   },
   {

@@ -8,10 +8,11 @@ import { RegisterProvider } from "./context/RegisterContext";
 import { RequestProvider } from "./context/RequestContext";
 import { RequestCreateProvider } from "./context/RequestCreateContext";
 import { EmployeeRequestProvider } from "./context/EmployeeRequestContext";
+import Loader from "./components/loader";
 
 function App() {
   return (
-    <Suspense fallback={<h1>Cargando...</h1>}>
+    <Suspense fallback={<Loader/>}>
       <NotificationContainer />
       <AuthProvider>
         <EmployeeProvider>

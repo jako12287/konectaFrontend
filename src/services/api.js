@@ -36,7 +36,6 @@ export const fetchEmployees = async (token, page = 1, pageSize = 5) => {
     }
 
     const data = await response.json();
-    console.log("fetchEmployees -> data", data);
 
     return {
       employees: data.employees,
@@ -67,20 +66,22 @@ export const registerUser = async (userData, token) => {
 
 export const fetchRequests = async (token, page = 1) => {
   try {
-    const response = await fetch(`${API_URL}/api/request/admin/all?page=${page}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `${API_URL}/api/request/admin/all?page=${page}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Error al obtener las solicitudes");
     }
 
     const data = await response.json();
-    console.log("fetchRequests -> data", data);
 
     return {
       requests: data.requests || [],
@@ -91,7 +92,6 @@ export const fetchRequests = async (token, page = 1) => {
     return { requests: [], totalPages: 1 };
   }
 };
-
 
 export const deleteRequestById = async (id, token) => {
   try {
@@ -108,7 +108,6 @@ export const deleteRequestById = async (id, token) => {
     }
 
     const result = await response.json();
-    console.log("Solicitud eliminada con éxito:", result);
     return result;
   } catch (error) {
     console.error("Error eliminando la solicitud:", error);
@@ -132,5 +131,3 @@ export const createRequest = async (requestData, token) => {
 
   return response.json();
 };
-
-

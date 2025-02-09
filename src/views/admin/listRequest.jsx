@@ -8,7 +8,6 @@ import styles from "../../styles/listEmployee.module.css";
 const ListRequest = () => {
   const { requests, refreshRequests } = useRequests();
   const [openModal, setOpenModal] = useState(false);
-  console.log("TCL: ListRequest -> [openModal", openModal);
 
   return (
     <div className={styles.container}>
@@ -21,7 +20,10 @@ const ListRequest = () => {
       />
       {openModal && (
         <Modal isOpen={openModal} onClose={() => setOpenModal(!openModal)}>
-          <CreateRequestForm setOpenModal={setOpenModal} refreshRequests={refreshRequests}/>
+          <CreateRequestForm
+            setOpenModal={setOpenModal}
+            refreshRequests={refreshRequests}
+          />
         </Modal>
       )}
     </div>

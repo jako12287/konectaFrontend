@@ -7,7 +7,6 @@ import CreateUseForm from "../../components/createUserForm";
 const ListEmployee = () => {
   const { employees } = useEmployees();
   const [openModal, setOpenModal] = useState(false);
-  console.log("TCL: ListEmployee -> [openModal", openModal);
 
   return (
     <div className={styles.container}>

@@ -29,8 +29,6 @@ const RequestTable = ({ refreshRequests, onOpenModal }) => {
   }, [requests, searchTerm]);
 
   const handleDeleteRequest = async (id) => {
-    console.log("TCL: handleDeleteRequest -> id", id);
-    console.log("TCL: handleDeleteRequest -> token", token);
     const confirmDelete = window.confirm(
       "¿Estás seguro de que quieres eliminar esta solicitud?"
     );
@@ -38,7 +36,6 @@ const RequestTable = ({ refreshRequests, onOpenModal }) => {
 
     try {
       const response = await deleteRequestById(id, token);
-      console.log("TCL: handleDeleteRequest -> response", response);
 
       if (!response.ok) {
         console.log("TCL: deleteRequest -> error");

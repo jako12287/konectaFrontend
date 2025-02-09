@@ -12,15 +12,31 @@ export const RequestProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [employeeId, setEmployeeId] = useState(null);
+  const [employeeInfo, setEmployeeInfo] = useState(null);
   const { token } = useAuth();
 
   const getRequests = async () => {
     if (token) {
       setLoading(true);
       try {
-        const { requests, totalPages } = await fetchRequests(token, currentPage);
-        setRequests(requests);
+        const { requests, totalPages } = await fetchRequests(
+          token,
+          currentPage
+        );
+
+        const filteredRequests = employeeId
+          ? requests.filter((req) => req.id_employee === employeeId)
+          : requests;
+
+        setRequests(filteredRequests);
         setTotalPages(totalPages);
+
+        if (employeeId && filteredRequests.length > 0) {
+          setEmployeeInfo(filteredRequests[0].Employee);
+        } else {
+          setEmployeeInfo(null);
+        }
       } catch (error) {
         console.error("Error al obtener solicitudes:", error);
       } finally {
@@ -28,11 +44,10 @@ export const RequestProvider = ({ children }) => {
       }
     }
   };
-  
 
   useEffect(() => {
     getRequests();
-  }, [token, currentPage]);
+  }, [token, currentPage, employeeId]);
 
   const refreshRequests = () => {
     getRequests();
@@ -47,6 +62,9 @@ export const RequestProvider = ({ children }) => {
         totalPages,
         refreshRequests,
         loading,
+        employeeId,
+        setEmployeeId,
+        employeeInfo,
       }}
     >
       {children}

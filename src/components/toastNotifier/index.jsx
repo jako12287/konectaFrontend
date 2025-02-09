@@ -1,7 +1,6 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// Hook personalizado para notificaciones
 export const useNotification = () => {
   const notify = (type, message, options = {}) => {
     const defaultOptions = {
@@ -12,20 +11,20 @@ export const useNotification = () => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      ...options
+      ...options,
     };
 
     switch (type) {
-      case 'success':
+      case "success":
         toast.success(message, defaultOptions);
         break;
-      case 'error':
+      case "error":
         toast.error(message, defaultOptions);
         break;
-      case 'info':
+      case "info":
         toast.info(message, defaultOptions);
         break;
-      case 'warning':
+      case "warning":
         toast.warn(message, defaultOptions);
         break;
       default:
@@ -36,7 +35,6 @@ export const useNotification = () => {
   return { notify };
 };
 
-// Componente contenedor de notificaciones
 const NotificationContainer = () => (
   <ToastContainer
     position="top-right"

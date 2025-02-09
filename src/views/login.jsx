@@ -28,10 +28,8 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const user = await loginUser(data?.user, data?.password);
-      console.log("TCL: onSubmit -> data", user);
       login(user.user, user.token);
       notify("success", user.message.es);
-      console.log("data", user.user.role);
       if (user.user.role === "admin") {
         navigation("/wellcome");
       } else if (user.user.role === "employee") {

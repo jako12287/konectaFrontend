@@ -1,7 +1,8 @@
+import PropTypes from "prop-types";
 import styles from "../../styles/layout.module.css";
 import Menu from "../menu";
 
-const Layout = (children) => {
+const Layout = ({children}) => {
   return (
     <main className={styles.container}>
       <section className={styles.sectionMenu}>
@@ -13,3 +14,7 @@ const Layout = (children) => {
 };
 
 export default Layout;
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};

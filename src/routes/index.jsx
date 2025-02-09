@@ -20,7 +20,7 @@ const Router = [
   },
   {
     id: "dashboardEmployee",
-    path: "/Dashboard-employee",
+    path: "/dashboard-employee",
     element: <DashboardEmployee />,
   },
   {
@@ -29,7 +29,7 @@ const Router = [
     element: (
       <Layout>
         <Wellcome />
-      </Layout>
+       </Layout>
     ),
   },
   {

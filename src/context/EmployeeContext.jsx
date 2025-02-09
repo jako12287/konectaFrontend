@@ -29,12 +29,10 @@ export const EmployeeProvider = ({ children }) => {
     }
   };
 
-  // Llamada inicial
   useEffect(() => {
     getEmployees();
   }, [token, currentPage]);
 
-  // Función para refrescar empleados manualmente
   const refreshEmployees = () => {
     getEmployees();
   };

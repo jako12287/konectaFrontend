@@ -1,5 +1,5 @@
 import { useState } from "react";
-import EmployeeTable from "../../components/customTable";
+import EmployeeTable from "../../components/customTableEmployees";
 import { useEmployees } from "../../context/EmployeeContext";
 import styles from "../../styles/listEmployee.module.css";
 import Modal from "../../components/modal";
@@ -12,17 +12,15 @@ const ListEmployee = () => {
   return (
     <div className={styles.container}>
       <h2>Lista de Empleados</h2>
-      {employees.length === 0 ? (
-        <p>No hay empleados disponibles</p>
-      ) : (
-        <EmployeeTable
-          data={employees}
-          onOpenModal={() => setOpenModal(!openModal)}
-        />
-      )}
+
+      <EmployeeTable
+        data={employees}
+        onOpenModal={() => setOpenModal(!openModal)}
+      />
+
       {openModal && (
         <Modal isOpen={openModal} onClose={() => setOpenModal(!openModal)}>
-          <CreateUseForm setOpenModal={setOpenModal}/>
+          <CreateUseForm setOpenModal={setOpenModal} />
         </Modal>
       )}
     </div>

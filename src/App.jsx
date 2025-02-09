@@ -1,10 +1,12 @@
 import { Suspense } from "react";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes";
+import NotificationContainer from "./components/toastNotifier";
 import { AuthProvider } from "./context/AuthContext";
 import { EmployeeProvider } from "./context/EmployeeContext";
-import NotificationContainer from "./components/toastNotifier";
 import { RegisterProvider } from "./context/RegisterContext";
+import { RequestProvider } from "./context/RequestContext";
+import { RequestCreateProvider } from "./context/RequestCreateContext";
 
 function App() {
   return (
@@ -13,7 +15,11 @@ function App() {
       <AuthProvider>
         <EmployeeProvider>
           <RegisterProvider>
-            <RouterProvider router={router} />
+            <RequestProvider>
+              <RequestCreateProvider>
+              <RouterProvider router={router} />
+              </RequestCreateProvider>
+            </RequestProvider>
           </RegisterProvider>
         </EmployeeProvider>
       </AuthProvider>
